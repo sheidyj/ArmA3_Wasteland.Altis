@@ -31,7 +31,7 @@ playerSetupComplete = false;
 
 waitUntil {!isNull player && time > 0};
 
-removeAllWeapons player;
+//removeAllWeapons player;
 player switchMove "";
 
 // initialize actions and inventory
