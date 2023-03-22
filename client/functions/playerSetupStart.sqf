@@ -23,9 +23,15 @@ if (["A3W_unlimitedStamina"] call isConfigOn) then
 
 enableSentences false;
 
-removeAllWeapons _player;
-removeUniform _player;
-removeVest _player;
-removeBackpack _player;
-removeGoggles _player;
-removeHeadgear _player;
+_player enableFatigue false; // disable player fatigue (no fatigue)
+_player enableStamina false; // disable player stamina (unlimited stamina)
+
+_player setCustomAimCoef 0.1; // drastically reduce weapon sway
+_player addEventhandler ["Respawn", {_player setCustomAimCoef 0.1;}];  // drastically reduce weapon sway upon respawn
+
+//removeAllWeapons _player;
+//removeUniform _player;
+//removeVest _player;
+//removeBackpack _player;
+//removeGoggles _player;
+//removeHeadgear _player;
