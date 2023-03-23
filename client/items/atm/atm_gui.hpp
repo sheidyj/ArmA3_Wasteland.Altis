@@ -11,7 +11,7 @@ class AtmGUI
 	idd = AtmGUI_IDD;
 	movingEnable = true;
 	enableSimulation = true;
-	controls[] = {AtmBalanceHead, AtmBalanceText, AtmAmountLabel, AtmAmountInput, AtmAccountLabel, AtmAccountDropdown, AtmFeeLabel, AtmFeeText, AtmTotalLabel, AtmTotalText, AtmDepositButton, AtmWithdrawButton, AtmCancelButton};
+	controls[] = {AtmBalanceHead, AtmBalanceText, AtmAmountLabel, AtmAmountInput, AtmAccountLabel, AtmAccountDropdown, AtmFeeLabel, AtmFeeText, AtmTotalLabel, AtmTotalText, AtmDepositButton, AtmWithdrawButton, AtmCancelButton, AtmDepositAllButton};
 	controlsBackground[] = {AtmBG, AtmTopBG, AtmTopLogo, AtmBalanceBG};
 
 
@@ -288,6 +288,17 @@ class AtmGUI
 		#define AtmDepositButton_X (AtmBG_X + Atm_OUTER_MARGIN_X)
 
 		x = AtmDepositButton_X;
+	};
+	
+	class AtmDepositAllButton : AtmGreenButton
+	{
+		idc = AtmDepositAllButton_IDC;
+		text = "Deposit All";
+		// action is defined in client\items\atm\select_account.sqf
+
+		#define AtmDepositAllButton_X (AtmCancelButton_X + AtmButton_W + Atm_INNER_MARGIN_X)
+
+		x = AtmDepositAllButton_X;
 	};
 
 	class AtmWithdrawButton : AtmGreenButton
