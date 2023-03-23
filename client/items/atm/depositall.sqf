@@ -3,7 +3,7 @@
 // ******************************************************************************************
 //	@file Name: depositall.sqf
 //	@file Author: Demonicpenguin
-//	@file Function: mf_items_atm_deposit_all
+//	@file Function: mf_items_atm_depositall
 
 #include "gui_defines.hpp"
 
@@ -17,8 +17,7 @@ _dialog = findDisplay AtmGUI_IDD;
 
 if (isNull _dialog) exitWith {};
 
-//_input = _dialog displayCtrl AtmAmountInput_IDC;
-//_amount = _input call mf_verify_money_input;
+_input = _dialog displayCtrl AtmAmountInput_IDC;
 _amount = player getVariable ["cmoney", 0];
 
 if (_amount < 1) exitWith {};

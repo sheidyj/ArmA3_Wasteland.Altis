@@ -294,7 +294,7 @@ class AtmGUI
 	{
 		idc = AtmDepositAllButton_IDC;
 		text = "Deposit All";
-		// action is defined in client\items\atm\select_account.sqf
+		action = "call mf_items_atm_depositall";
 
 		#define AtmDepositAllButton_X (AtmCancelButton_X + AtmButton_W + Atm_INNER_MARGIN_X)
 
