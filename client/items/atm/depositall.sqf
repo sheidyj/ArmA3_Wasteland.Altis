@@ -19,7 +19,7 @@ if (isNull _dialog) exitWith {};
 
 //_input = _dialog displayCtrl AtmAmountInput_IDC;
 //_amount = _input call mf_verify_money_input;
-_amount = _input player getVariable ["cmoney", 0];
+_amount = player getVariable ["cmoney", 0];
 
 if (_amount < 1) exitWith {};
 
