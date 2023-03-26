@@ -9,7 +9,7 @@ _player = _this;
 
 // Clothing is now defined in "client\functions\getDefaultClothing.sqf"
 
-_uniform = [_player, "uniform"] call getDefaultClothing;
+/*_uniform = [_player, "uniform"] call getDefaultClothing;
 _vest = [_player, "vest"] call getDefaultClothing;
 _headgear = [_player, "headgear"] call getDefaultClothing;
 _goggles = [_player, "goggles"] call getDefaultClothing;
@@ -59,7 +59,7 @@ switch (true) do
 	{
 		_player addWeapon "Rangefinder";
 	};
-};
+};*/
 
 if (_player == player) then
 {
