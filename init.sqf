@@ -99,6 +99,8 @@ if (hasInterface || isServer) then
 	if (isNil "drn_DynamicWeather_MainThread") then { drn_DynamicWeather_MainThread = [] execVM "addons\scripts\DynamicWeatherEffects.sqf" };
 };
 
+if(hasInterface) then{[] execVM "addons\statusBar\statusbar.sqf"}; //sheidyj
+
 // Remove line drawings from map
 (createTrigger ["EmptyDetector", [0,0,0], false]) setTriggerStatements
 [
