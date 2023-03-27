@@ -1424,7 +1424,7 @@ colorsArray = compileFinal str
 			["Rusty - Hatchback", [[0, _wreckDir + "civilcar_extwreck_co.paa"]]]
 		]
 	],
-	[ // GOD EMPEROR
+	/*[ // GOD EMPEROR
 		"B_MBT_01_cannon_F",
 		[
 			["Trump - Slammer", [
@@ -1438,7 +1438,7 @@ colorsArray = compileFinal str
 		[
 			["Trump - Slammer", [[2, _texDir + "slammer_trump_2.paa"]]]
 		]
-	]
+	]*/
 ];
 
 //General Store Item List
