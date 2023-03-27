@@ -1157,6 +1157,8 @@ tanksArray = compileFinal str
 	["MBT-52 Kuma", "I_MBT_03_cannon_F", 60000, "vehicle"],
 	["T-140 Angara", "O_MBT_04_cannon_F", 75000, "vehicle"],
 	["T-140K Angara", "O_MBT_04_command_F", 90000, "vehicle"]
+	["M4 Scorcher", "B_MBT_01_arty_F", 200000, "vehicle"],
+	["M5 Sandstorm MLRS", "B_MBT_01_mlrs_F", 200000, "vehicle"],
 ];
 
 helicoptersArray = compileFinal str
