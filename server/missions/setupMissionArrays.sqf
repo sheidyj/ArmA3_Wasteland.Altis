@@ -13,7 +13,7 @@ MainMissions =
 //	["mission_Coastal_Convoy", 3],
 //	["mission_Convoy", 2]
 //	["mission_HostileHeliFormation", 3]
-	["mission_AirPatrol", 2]
+	["mission_AirPatrol", 2],
 //	["mission_APC", 0.5],
 //	["mission_MBT", 0.5],
 //	["mission_LightArmVeh", 0.5]
