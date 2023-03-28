@@ -12,7 +12,7 @@ private ["_nbUnits", "_setupObjects", "_marker42O", "_createMarkerLocal", "_aiGr
 _setupVars =
 {
 	_missionType = "Princess Demons's Treasures";
-	_locationsArray = MSpMark;
+	_locationsArray = MissionSpawnMarkers;
 	_nbUnits = AI_GROUP_LARGE;
 };
 
