@@ -91,8 +91,7 @@ for "_i" from 0 to 1 step 0 do {
 				<t shadow='1' shadowColor='#000000' color='%7'><img size='1.1'  shadowColor='#000000' image='addons\statusbar\icons\players.paa' color='%7'/> %2</t>
 				<t shadow='1' shadowColor='#000000' color='%12'><img size='1.0'  shadowColor='#000000' image='addons\statusbar\icons\health.paa' color='%7'/> %3%1</t>
 				<t shadow='1' shadowColor='#000000' color='%7'><img size='1.0'  shadowColor='#000000' image='addons\statusbar\icons\money.paa' color='%7'/> %4</t>
-				<t shadow='1' shadowColor='#000000' color='%7'><img size='1.0'  shadowColor='#000000' image='addons\statusbar\icons\suatmm_icon.paa' color='%7'/> %4</t>
-				<t shadow='1' shadowColor='#000000' color='%7'><img size='1.1'  shadowColor='#000000' image='addons\statusbar\icons\restart.paa' color='%7'/>%10:%11</t>", 
+				<t shadow='1' shadowColor='#000000' color='%7'><img size='1.0'  shadowColor='#000000' image='addons\statusbar\icons\suatmm_icon.paa' color='%7'/> %5</t>", 
 				"%",count playableUnits, _damage, _wallet, _atm, _serverFPS, _colourDefault, format["%1/%2",_xx,_yy], /*_dir, _hours, _minutes, */_colourDamage
 			];
 		};

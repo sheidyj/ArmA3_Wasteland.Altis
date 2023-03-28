@@ -32,9 +32,9 @@ class RscWastelandStatusBar
                 class statusBarText
                 {
                         idc = 55554;
-                        x = safezoneX + safezoneW - /*1.08*/1.2/*0*/3;
+                        x = safezoneX + safezoneW - 1.08;
                         y = safezoneY + safezoneH - 0.060;
-                        w = 0.50;
+                        w = 1.35;
                         h = 0.06;
                         shadow = 2;
                         font = "PuristaSemibold";
