@@ -6,7 +6,7 @@
 //	@file Author: AgentRev
 //	@file Created: 22/12/2013 22:04
 
-private ["_unit", "_item", "_side", "_isSniper", "_isDiver", "_defaultVest", "_result"];
+private ["_unit", "_item", "_side", "_isSniper", "_isDiver", "_defaultVest", "_defaultHeadgear", "_result"];
 
 _unit = _this select 0;
 _item = _this select 1;
@@ -21,10 +21,12 @@ else
 	_side = _this select 2;
 };
 
+_isMedic = (["_medic_", _unit] call fn_findString != -1);
+_isEngineer = (["_engineer_", _unit] call fn_findString != -1);
 _isSniper = (["_sniper_", _unit] call fn_findString != -1);
-_isDiver = (["_diver_", _unit] call fn_findString != -1);
 
-_defaultVest = "V_Rangemaster_Belt";
+_defaultVest = "V_TacVest_brn";
+_defaultHeadgear = "H_HelmetB";
 
 _result = "";
 
@@ -34,17 +36,21 @@ switch (_side) do
 	{
 		switch (true) do
 		{
+			case (_isMedic):
+			{
+				if (_item == "uniform") then { _result = "U_B_CombatUniform_mcam" };
+				if (_item == "vest") then { _result = _defaultVest };
+			};
+			case (_isEngineer):
+			{
+				if (_item == "uniform") then { _result = "U_B_CombatUniform_mcam" };
+				if (_item == "vest") then { _result = _defaultVest };
+			};
 			case (_isSniper):
 			{
 				if (_item == "uniform") then { _result = "U_B_Ghilliesuit" };
 				if (_item == "vest") then { _result = _defaultVest };
-			};
-			case (_isDiver):
-			{
-				if (_item == "uniform") then { _result = "U_B_Wetsuit" };
-				if (_item == "vest") then { _result = "V_RebreatherB" };
-				if (_item == "goggles") then { _result = "G_Diving" };
-			};
+			};			
 			default
 			{
 				if (_item == "uniform") then { _result = "U_B_CombatUniform_mcam" };
@@ -52,47 +58,55 @@ switch (_side) do
 			};
 		};
 
-		if (_item == "headgear") then { _result = "H_MilCap_mcamo" };
+		if (_item == "headgear") then { _result = _defaultHeadgear };
 	};
 	case OPFOR:
 	{
 		switch (true) do
 		{
-			case (_isSniper):
+			case (_isMedic):
 			{
-				if (_item == "uniform") then { _result = "U_O_Ghilliesuit" };
+				if (_item == "uniform") then { _result = "U_O_CombatUniform_ocamo" };
 				if (_item == "vest") then { _result = _defaultVest };
 			};
-			case (_isDiver):
+			case (_isEngineer):
 			{
-				if (_item == "uniform") then { _result = "U_O_Wetsuit" };
-				if (_item == "vest") then { _result = "V_RebreatherIR" };
-				if (_item == "goggles") then { _result = "G_Diving" };
+				if (_item == "uniform") then { _result = "U_O_CombatUniform_ocamo" };
+				if (_item == "vest") then { _result = _defaultVest };
 			};
+			case (_isSniper):
+			{
+				if (_item == "uniform") then { _result = "U_O_GhillieSuit" };
+				if (_item == "vest") then { _result = _defaultVest };
+			};			
 			default
 			{
-				if (_item == "uniform") then { _result = "U_O_officer_noInsignia_hex_F" };
+				if (_item == "uniform") then { _result = "U_O_CombatUniform_ocamo" };
 				if (_item == "vest") then { _result = _defaultVest };
 			};
 		};
 
-		if (_item == "headgear") then { _result = "H_MilCap_ocamo" };
+		if (_item == "headgear") then { _result = _defaultHeadgear };
 	};
 	default
 	{
 		switch (true) do
 		{
-			case (_isSniper):
+			case (_isMedic):
 			{
-				if (_item == "uniform") then { _result = "U_I_Ghilliesuit" };
+				if (_item == "uniform") then { _result = "U_I_CombatUniform" };
 				if (_item == "vest") then { _result = _defaultVest };
 			};
-			case (_isDiver):
+			case (_isEngineer):
 			{
-				if (_item == "uniform") then { _result = "U_I_Wetsuit" };
-				if (_item == "vest") then { _result = "V_RebreatherIA" };
-				if (_item == "goggles") then { _result = "G_Diving" };
+				if (_item == "uniform") then { _result = "U_I_CombatUniform" };
+				if (_item == "vest") then { _result = _defaultVest };
 			};
+			case (_isSniper):
+			{
+				if (_item == "uniform") then { _result = "U_I_GhillieSuit" };
+				if (_item == "vest") then { _result = _defaultVest };
+			};			
 			default
 			{
 				if (_item == "uniform") then { _result = "U_I_CombatUniform" };
@@ -100,7 +114,7 @@ switch (_side) do
 			};
 		};
 
-		if (_item == "headgear") then { _result = "H_MilCap_dgtl" };
+		if (_item == "headgear") then { _result = _defaultHeadgear };
 	};
 };
 
