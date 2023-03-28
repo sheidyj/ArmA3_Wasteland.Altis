@@ -23,7 +23,7 @@ class RscWastelandStatusBar
                       colorBackground[]={0,0,0,0};
                       sizeEx = 0.4;
                       font = "PuristaSemibold";
-                      text = "addons\statusbar\StatusBarBackground.paa";
+                      text = "addons\statusbar\StatusBarBackground.paa"; // new rounded edge background by CRE4MPIE
               };
       };
 
