@@ -9,7 +9,7 @@ private ["_pos", "_heliChoices", "_convoyVeh", "_veh", "_veh1", "_veh2", "_veh3"
 
 _setupVars =
 {
-	_missionType = "BROFs Patrol";
+	_missionType = "Air Patrol";
 	_locationsArray = nil; // locations are generated on the fly from towns
 };
 

@@ -9,31 +9,36 @@ if (!isServer) exitWith {};
 MainMissions =
 [
 	// Mission filename, weight
-	["mission_ArmedDiversquad", 1],
-	["mission_Coastal_Convoy", 1],
-	["mission_Convoy", 1],
-	["mission_HostileHeliFormation", 0.5],
-	["mission_APC", 1],
-	["mission_MBT", 1],
-	["mission_LightArmVeh", 1],
-	["mission_ArmedHeli", 1],
-	["mission_CivHeli", 1]
+//	["mission_ArmedDiversquad", 2],
+//	["mission_Coastal_Convoy", 3],
+//	["mission_Convoy", 2]
+//	["mission_HostileHeliFormation", 3]
+	["mission_AirPatrol", 2]
+//	["mission_APC", 0.5],
+//	["mission_MBT", 0.5],
+//	["mission_LightArmVeh", 0.5]
+	["mission_ArmedHeli", 0.5],
+//	["mission_CivHeli", 0.2]
 ];
 
 SideMissions =
 [
-	["mission_HostileHelicopter", 0.5],
-	["mission_MiniConvoy", 1],
-	["mission_SunkenSupplies", 1],
-	["mission_TownInvasion", 2],
-	["mission_Outpost", 3],
-	["mission_Truck", 1]
+//	["mission_HostileHelicopter", 2],
+//	["mission_MiniConvoy", 1],
+//	["mission_SunkenSupplies", 1],
+//	["mission_TownInvasion", 2],
+	["mission_CaptureStadium", 1],
+	["mission_Princess_Demons_treasures", 1],
+	["mission_StoreGrab", 1],
+//	["mission_Outpost", 3],
+//	["mission_TowerDominations", 2.5],
+//	["mission_Truck", 1]
 ];
 
 MoneyMissions =
 [
-	["mission_MoneyShipment", 1],
-	["mission_SunkenTreasure", 1]
+//	["mission_MoneyShipment", 1],
+//	["mission_SunkenTreasure", 1]
 ];
 
 MissionSpawnMarkers = (allMapMarkers select {["Mission_", _x] call fn_startsWith}) apply {[_x, false]};
