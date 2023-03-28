@@ -37,7 +37,7 @@ SideMissions =
 
 MoneyMissions =
 [
-//	["mission_MoneyShipment", 1],
+	["mission_MoneyShipment", 1],
 //	["mission_SunkenTreasure", 1]
 ];
 
