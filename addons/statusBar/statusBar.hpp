@@ -7,7 +7,7 @@ class RscWastelandStatusBar
 		fadeout = 0;
 		movingEnable = 0;
 		objects[] = {};
-/*
+
       class controlsBackground
       {
               class statusBarImage
@@ -26,7 +26,7 @@ class RscWastelandStatusBar
                       text = "addons\statusbar\StatusBarBackground.paa";
               };
       };
-*/
+
         class controls
         {
                 class statusBarText
