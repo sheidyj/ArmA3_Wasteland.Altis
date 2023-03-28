@@ -1,8 +1,29 @@
+// ******************************************************************************************
 // * This project is licensed under the GNU Affero GPL v3. Copyright © 2020 A3Wasteland.com *
+// ******************************************************************************************
+/********************************************************************************************
+														   ....              
+													 .##############.        
+									 ####.         #########@@#########      
+									%####         #######=        =######    
+									####@       ######*             .#####.  
+					 ####           ####       #######                #####. 
+					 ####          .####      #####                    ##### 
+					 ####%         -####     .####                     .#####
+					 .####         .####     =####          ####        #####
+					  ####         .####     .####           #.  ###    #####
+					  #####         ####      #####                 .  #####%
+					   ###################     #####                  ###### 
+						-###############%  %#-  ######*            =######@  
+									:###%    .#   #######################    
+									 ####.  #-      :################%       
+										   ####.         -%###%.             
+																			 
+***********************************************************************************************/
 //	@file Name: mission_CaptureStadium.sqf
 //	Initial version of code -> A3Wasteland.com
+//	@file author inspiration: this is done thanks to the love of my only princess Margot, love charges me with energy, giving this opportunity ...
 //	@file Author: [IT42O] MjDoc
-//	@file Editor: sheidyj
 
 if (!isServer) exitwith {};
 
@@ -194,7 +215,7 @@ _successExec =
 	// Mission completed
 	//{ _x setVariable ["R3F_LOG_disabled", false, true] } forEach [_box1, _box2];
 
-	_successHintMessage = format ["Nice work!<br/><br/><t color='%1'>%2</t><br/>is a safe place again!<br/>Their belongings are now yours, amunition nearby. Take it!", sideMissionColor, _townName];
+	_successHintMessage = format ["Nice work!<br/><br/><t color='%1'>%2</t><br/>is a safe place again!<br/>Their belongings are now yours, amunition nearby. Take it!, damn it now!!!", sideMissionColor, _townName];
 		
 	_box1 = createVehicle ["I_E_CargoNet_01_ammo_F", _lastPos, [], 2, "None"];
 	_box1 setDir random 360;

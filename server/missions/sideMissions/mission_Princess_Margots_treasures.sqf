@@ -1,8 +1,30 @@
+// ******************************************************************************************
 // * This project is licensed under the GNU Affero GPL v3. Copyright © 2020 A3Wasteland.com *
-//	@file Name: mission_Princess_Demonss_treasures.sqf
+// ******************************************************************************************
+/********************************************************************************************
+														   ....              
+													 .##############.        
+									 ####.         #########@@#########      
+									%####         #######=        =######    
+									####@       ######*             .#####.  
+					 ####           ####       #######                #####. 
+					 ####          .####      #####                    ##### 
+					 ####%         -####     .####                     .#####
+					 .####         .####     =####          ####        #####
+					  ####         .####     .####           #.  ###    #####
+					  #####         ####      #####                 .  #####%
+					   ###################     #####                  ###### 
+						-###############%  %#-  ######*            =######@  
+									:###%    .#   #######################    
+									 ####.  #-      :################%       
+										   ####.         -%###%.             
+																			 
+***********************************************************************************************/
+//	@file Name: mission_Princess_Margots_treasures.sqf
 //	Initial version of code -> A3Wasteland.com
+//	@file author inspiration: this is done thanks to the love of my only princess Margot, love charges me with energy, giving this opportunity ...
 //	@file Author: [IT42O] MjDoc
-//	@file Editor: sheidyj
+
 
 if (!isServer) exitwith {};
 #include "sideMissionDefines.sqf";
@@ -11,8 +33,8 @@ private ["_nbUnits", "_setupObjects", "_marker42O", "_createMarkerLocal", "_aiGr
 
 _setupVars =
 {
-	_missionType = "Princess Demons's Treasures";
-	_locationsArray = MissionSpawnMarkers;
+	_missionType = "Princess Margot's Treasures";
+	_locationsArray = MSpMark;
 	_nbUnits = AI_GROUP_LARGE;
 };
 
@@ -142,7 +164,7 @@ _setupObjects =
 	_numWaypoints = count waypoints _aiGroup;
 	
 ////////////////	
-	_missionHintText = format ["Pirates captured the castle, do not let intruders steal the treasures of Princess <t color='%1'>Demon</t>!", sideMissionColor]
+	_missionHintText = format ["Pirates captured the castle, do not let intruders steal the treasures of Princess <t color='%1'>Margot</t>!", sideMissionColor]
 
 };
 
@@ -172,7 +194,7 @@ _successExec =
 	{ _x setVariable ["R3F_LOG_disabled", false, true] } forEach _objects2;
 	[_locationsArray, _missionLocation, _objects2] call setLocationObjects;
 
-	_successHintMessage = "Princess Demon's treasures were captured, good work!";
+	_successHintMessage = "Princess Margot's treasures were captured, good work!";
 	
 	_box1 = createVehicle ["C_IDAP_CargoNet_01_supplies_F", _lastPos, [], 2, "None"];
 	_box1 setDir random 360;

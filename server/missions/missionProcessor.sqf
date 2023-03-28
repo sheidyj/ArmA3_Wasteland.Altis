@@ -1,6 +1,3 @@
-// ******************************************************************************************
-// * This project is licensed under the GNU Affero GPL v3. Copyright © 2014 A3Wasteland.com *
-// ******************************************************************************************
 //	@file Name: missionProcessor.sqf
 //	@file Author: AgentRev
 
@@ -9,7 +6,7 @@ if (!isServer) exitwith {};
 #define MISSION_LOCATION_COOLDOWN (10*60)
 #define MISSION_TIMER_EXTENSION (15*60)
 
-private ["_controllerSuffix", "_missionTimeout", "_availableLocations", "_missionLocation", "_leader", "_marker", "_failed", "_complete", "_startTime", "_oldAiCount", "_leaderTemp", "_newAiCount", "_adjustTime", "_lastPos", "_floorHeight"];
+private ["_controllerSuffix", "_missionTimeout", "_availableLocations", "_missionLocation", "_leader", "_marker", "_failed", "_complete", "_startTime", "_oldAiCount", "_leaderTemp", "_newAiCount", "_adjustTime", "_lastPos", "_floorHeight", "_markerEnd"];
 
 // Variables that can be defined in the mission script :
 private ["_missionType", "_locationsArray", "_aiGroup", "_missionPos", "_missionPicture", "_missionHintText", "_successHintMessage", "_failedHintMessage"];
@@ -19,7 +16,7 @@ _aiGroup = grpNull;
 
 if (!isNil "_setupVars") then { call _setupVars };
 
-diag_log format ["WASTELAND SERVER - %1 Mission%2 started: %3", MISSION_PROC_TYPE_NAME, _controllerSuffix, _missionType];
+diag_log format ["[BRO'F] WASTELAND SERVER - %1 Mission%2 started: %3", MISSION_PROC_TYPE_NAME, _controllerSuffix, _missionType];
 
 _missionTimeout = MISSION_PROC_TIMEOUT;
 
@@ -47,7 +44,7 @@ _aiGroup setVariable ["A3W_missionMarkerName", _marker, true];
 if (isNil "_missionPicture") then { _missionPicture = "" };
 
 [
-	format ["%1 Objective", MISSION_PROC_TYPE_NAME],
+	format ["%1 Exercise", MISSION_PROC_TYPE_NAME],
 	_missionType,
 	_missionPicture,
 	_missionHintText,
@@ -55,7 +52,7 @@ if (isNil "_missionPicture") then { _missionPicture = "" };
 ]
 call missionHint;
 
-diag_log format ["WASTELAND SERVER - %1 Mission%2 waiting to be finished: %3", MISSION_PROC_TYPE_NAME, _controllerSuffix, _missionType];
+diag_log format ["[BRO'F] WASTELAND SERVER - %1 Mission%2 waiting to be finished: %3", MISSION_PROC_TYPE_NAME, _controllerSuffix, _missionType];
 
 _failed = false;
 _complete = false;
@@ -133,7 +130,7 @@ if (_failed) then
 	};
 
 	[
-		"Objective Failed",
+		"Exercise Failed",
 		_missionType,
 		_missionPicture,
 		if (!isNil "_failedHintMessage") then { _failedHintMessage } else { "Better luck next time!" },
@@ -141,7 +138,7 @@ if (_failed) then
 	]
 	call missionHint;
 
-	diag_log format ["WASTELAND SERVER - %1 Mission%2 failed: %3", MISSION_PROC_TYPE_NAME, _controllerSuffix, _missionType];
+	diag_log format ["[BRO'F] WASTELAND SERVER - %1 Mission%2 failed: %3", MISSION_PROC_TYPE_NAME, _controllerSuffix, _missionType];
 }
 else
 {
@@ -197,19 +194,29 @@ else
 	};
 
 	[
-		"Objective Complete",
+		"Exercise COMPLETE!",
 		_missionType,
 		_missionPicture,
 		_successHintMessage,
 		successMissionColor
 	]
 	call missionHint;
+	
+	_markerEnd = [_missionType, _lastPos, "mil_end", 52] call createMissionMarkerC; //by MjDoc
 
-	diag_log format ["WASTELAND SERVER - %1 Mission%2 complete: %3", MISSION_PROC_TYPE_NAME, _controllerSuffix, _missionType];
+	diag_log format ["[BRO'F] WASTELAND SERVER - %1 Mission%2 complete: %3", MISSION_PROC_TYPE_NAME, _controllerSuffix, _missionType];
 };
 
 deleteGroup _aiGroup;
 deleteMarker _marker;
+
+//by MjDoc
+if(!isNil "_markerEnd") then {
+    _markerEnd spawn {
+        sleep 50;
+        deleteMarker _this;
+    };
+};
 
 if (!isNil "_locationsArray") then
 {

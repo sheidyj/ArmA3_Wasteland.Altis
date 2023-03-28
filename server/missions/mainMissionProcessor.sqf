@@ -1,6 +1,3 @@
-// ******************************************************************************************
-// * This project is licensed under the GNU Affero GPL v3. Copyright © 2014 A3Wasteland.com *
-// ******************************************************************************************
 //	@file Name: mainMissionProcessor.sqf
 //	@file Author: AgentRev
 
@@ -9,4 +6,4 @@
 #define MISSION_PROC_COLOR_DEFINE mainMissionColor
 
 #include "mainMissions\mainMissionDefines.sqf"
-#include "missionProcessor.sqf";
+#include "missionProcessor3.sqf";

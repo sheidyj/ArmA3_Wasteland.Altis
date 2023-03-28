@@ -1,41 +1,65 @@
 // ******************************************************************************************
-// * This project is licensed under the GNU Affero GPL v3. Copyright © 2014 A3Wasteland.com *
+// * This project is licensed under the GNU Affero GPL v3. Copyright © 2020 A3Wasteland.com *
 // ******************************************************************************************
+/********************************************************************************************
+														   ....              
+													 .##############.        
+									 ####.         #########@@#########      
+									%####         #######=        =######    
+									####@       ######*             .#####.  
+					 ####           ####       #######                #####. 
+					 ####          .####      #####                    ##### 
+					 ####%         -####     .####                     .#####
+					 .####         .####     =####          ####        #####
+					  ####         .####     .####           #.  ###    #####
+					  #####         ####      #####                 .  #####%
+					   ###################     #####                  ###### 
+						-###############%  %#-  ######*            =######@  
+									:###%    .#   #######################    
+									 ####.  #-      :################%       
+										   ####.         -%###%.             
+																			 
+***********************************************************************************************/
 //	@file Name: Outpost2.sqf
-//	@file Author: JoSchaap, AgentRev
+//	@file Author: JoSchaap, AgentRev, [IT42O] MjDoc
+//	@file embellished by [IT42O] MjDoc
 
 [
-	// Class, Position, Direction, Init (optional)
-	["Land_LampShabby_F", [-0.298828, 9.40234, 0.00143814], 188.089],
-	["Land_LampShabby_F", [-0.188477, 9.95068, -0.0161819], 1.90371],
-	["Land_CncBarrierMedium4_F", [-0.232666, 10.4307, 0.153743], 359.72],
-	["Land_BagBunker_Small_F", [-5.16577, 6.29346, 0.0585103], 180.219],
-	["Land_BagFence_Long_F", [-0.163574, 1.57666, -0.0357904], 1.34008],
-	["Land_BagBunker_Small_F", [4.52393, 6.37305, 0.0791397], 179.5],
-	["Box_IND_WpsSpecial_F", [-1.04126, 0.24707, 0], 286.415, { [_this, ["mission_USSpecial", "mission_Main_A3snipers"] call BIS_fnc_selectRandom] call fn_refillbox }],
-	["Land_CncWall4_F", [-6.46558, 2.6377, 0.0582647], 90.8417],
-	["Land_LampShabby_F", [0, 0, -0.00534153], 0.243539],
-	["Land_LampShabby_F", [-0.117188, -0.513672, -0.0352049], 186.35],
-	["Box_East_WpsSpecial_F", [0.470947, -0.591309, 0], 85.8074, { [_this, "mission_USLaunchers"] call fn_refillbox }],
-	["Land_HBarrier_5_F", [-7.76196, 2.66602, 0.0108471], 270.574],
-	["Land_CncWall4_F", [5.80786, 2.78027, 0.100734], 269.176],
-	["Land_BagFence_Long_F", [-0.246338, -1.82959, -0.0460205], 359.373],
-	//["Land_CncBarrierMedium4_F", [-8.74731, 1.74219, -0.422749], 271.489],
-	["Land_HBarrier_5_F", [7.11743, 3.08105, 0.0197954], 269.531],
-	//["Land_CncBarrierMedium4_F", [8.08252, 2.17871, -0.377454], 269.773],
-	["Land_CncWall4_F", [-6.46436, -2.58936, 0.0695257], 89.8022],
-	//["Land_CncBarrierMedium4_F", [-8.71606, -1.99805, -0.405235], 269.972],
-	["Land_CncWall4_F", [5.92725, -2.4458, 0.0815554], 269.256],
-	["Land_HBarrier_5_F", [-7.75244, -2.91895, -0.0287189], 269.564],
-	["Land_HBarrier_5_F", [7.14795, -2.55615, 0.016717], 269.598],
-	//["Land_CncBarrierMedium4_F", [8.08228, -1.7876, -0.361892], 90.9182],
-	["Land_BagBunker_Small_F", [-5.20874, -6.12061, 0.0614038], 359.567],
-	["Land_BagBunker_Small_F", [4.69092, -6.15381, 0.0623822], 0.837728],
-	["Land_LampShabby_F", [-0.244873, -9.31641, -0.042263], 353.13],
-	["Land_LampShabby_F", [-0.268066, -9.83643, -0.123346], 179.672],
-	["Land_CncBarrierMedium4_F", [-0.29248, -10.4473, 0.116841], 1.21038],
-	["I_HMG_01_high_F", [4.2, 6.6, 0], 0, { if (random 1 < 0.5) exitWith { deleteVehicle _this }; [_this] call vehicleSetup }],
-	["I_HMG_01_high_F", [-4.5, 6.6, 0], 0, { if (random 1 < 0.5) exitWith { deleteVehicle _this }; [_this] call vehicleSetup }],
-	["I_HMG_01_high_F", [-4.9, -6.5, 0], 180, { if (random 1 < 0.5) exitWith { deleteVehicle _this }; [_this] call vehicleSetup }],
-	["I_HMG_01_high_F", [4.1, -6.5, 0], 180, { if (random 1 < 0.5) exitWith { deleteVehicle _this }; [_this] call vehicleSetup }]
+	// Class, Position, Direction, Init /*(optional X, Y, heit, turn)*/
+	["Land_Shed_05_F",[-0.5,0.5,0],316.486], 
+	["Land_BagFence_Corner_F",[4.00366,0.436768,-0.201],46.704], 
+	["Land_BagFence_Corner_F",[-0.833008,-4.06421,-0.201],136.562], 
+	["Land_BagFence_Corner_F",[0.63501,4.13574,-0.201],320.418], 
+	["Land_BagFence_Corner_F",[-4.2561,-0.458496,-0.201],227.909], 
+	["Land_ClothShelter_02_F",[3.65356,-3.43408,0],129.249], 
+	["Land_ClothShelter_02_F",[3.56592,3.97827,0],48.43], 
+	["Land_ClothShelter_02_F",[-3.86401,-3.70728,0],223.226], 
+	["Flag_Altis_F",[3.91113,0.395996,-0.61366],0], 
+	["Land_ClothShelter_02_F",[-4.00342,4.00879,0],315.542], 
+	["Box_Syndicate_WpsLaunch_F",[1.7749,1.5835,-0.000999928],234.52, { [_this, "mission_USLaunchers"/*, "mission_Main_A3snipers"*/]/* call BIS_fnc_selectRandom]*/ call fn_refillbox }],
+	["Box_Syndicate_Wps_F",[-1.83472,-1.61523,/*-0.00100136*/-0.000999928],51.1088, { [_this, "mission_USSpecial"] call fn_refillbox }],
+	["I_HMG_02_high_F",[3.52368,-3.82178,-0.0305505],126.901, [_this] call vehicleSetup], 
+	["I_HMG_02_high_F",[3.823,3.9436,-0.0305505],2.37684, [_this] call vehicleSetup], 
+	["I_HMG_02_high_F",[-4.12646,-3.64697,-0.0305591],225.397, [_this] call vehicleSetup], 
+	["I_HMG_02_high_F",[-3.90601,4.21704,-0.0305486],313.802, [_this] call vehicleSetup], 
+	["Land_SandbagBarricade_01_half_F",[6.24072,-1.55933,-0.2],87.53], 
+	["Land_SandbagBarricade_01_half_F",[1.72144,-6.37573,-0.2],180.251], 
+	["Land_SandbagBarricade_01_half_F",[6.31763,2.06079,-0.2],92.075], 
+	["Land_SandbagBarricade_01_half_F",[-2.01392,-6.37158,-0.2],178.99], 
+	["Land_SandbagBarricade_01_half_F",[-6.63745,1.97192,-0.2],267.894], 
+	["Land_SandbagBarricade_01_half_F",[1.64819,6.73169,-0.2],359.354], 
+	["Land_SandbagBarricade_01_half_F",[-6.71387,-1.73071,-0.2],271.711], 
+	["Land_SandbagBarricade_01_half_F",[-2.08813,6.76001,-0.2],0.615], 
+	["Land_SandbagBarricade_01_hole_F",[6.27417,-3.70874,-0.2],90.514], 
+	["Land_SandbagBarricade_01_hole_F",[3.90771,-6.25537,-0.2],171.374], 
+	["Land_SandbagBarricade_01_hole_F",[6.26709,4.25049,-0.2],83.198], 
+	["Land_SandbagBarricade_01_hole_F",[-4.16406,-6.3501,-0.2],181.974], 
+	["Land_SandbagBarricade_01_hole_F",[3.79761,6.69653,-0.2],2.338], 
+	["Land_SandbagBarricade_01_hole_F",[-6.64917,-3.91943,-0.2],262.834], 
+	["Land_SandbagBarricade_01_hole_F",[5.50537,-5.44531,-0.2],133.319], 
+	["Land_SandbagBarricade_01_hole_F",[-6.65723,4.12158,-0.2],270.878], 
+	["Land_SandbagBarricade_01_hole_F",[-4.27417,6.65283,-0.2],351.738], 
+	["Land_SandbagBarricade_01_hole_F",[5.50903,5.87256,-0.2],45.143], 
+	["Land_SandbagBarricade_01_hole_F",[-5.88086,-5.53784,-0.2],224.779], 
+	["Land_SandbagBarricade_01_hole_F",[-5.8772,5.85278,-0.2],313.683]
 ]

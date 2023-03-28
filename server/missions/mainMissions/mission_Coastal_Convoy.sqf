@@ -1,20 +1,14 @@
-// ******************************************************************************************
-// * This project is licensed under the GNU Affero GPL v3. Copyright © 2014 A3Wasteland.com *
-// ******************************************************************************************
-//	@file Version: 2
 //	@file Name: mission_Coastal_Convoy.sqf
 //	@file Author: JoSchaap / routes by Del1te - (original idea by Sanjo)
-//	@file Created: 02/09/2013 11:29
-//	@file Args: none
 
 if (!isServer) exitwith {};
 #include "mainMissionDefines.sqf"
 
-private ["_vehChoices", "_convoyVeh", "_veh1", "_veh2", "_veh3", "_createVehicle", "_vehicles", "_leader", "_speedMode", "_waypoint", "_vehicleName", "_vehicleName2", "_numWaypoints", "_box1", "_box2", "_box3"];
+private ["_vehChoices", "_convoyVeh", "_veh1", "_veh2", "_veh3", "_createVehicle", "_vehicles", "_leader", "_speedMode", "_waypoint", "_vehicleName", "_vehicleName2", "_numWaypoints", "_box1", "_box2", "_box3", "_signal", "_popaql", "_smoke", "_pos", "_vehicle", "_chute"];
 
 _setupVars =
 {
-	_missionType = "Coastal Patrol";
+	_missionType = "Deadly Patrol";
 	_locationsArray = CoastalConvoyPaths;
 };
 
@@ -25,23 +19,23 @@ _setupObjects =
 
 	_vehChoices =
 	[
-		["B_Boat_Armed_01_minigun_F", "B_Heli_Transport_01_F"],
-		["O_Boat_Armed_01_hmg_F", ["O_Heli_Light_02_dynamicLoadout_F", "orcaDAGR"]],
-		["I_Boat_Armed_01_minigun_F", "I_Heli_light_03_dynamicLoadout_F"]
+		["O_Heli_Attack_02_black_F", "O_Heli_Attack_02_black_F"],
+		["O_Heli_Attack_02_black_F", "O_Heli_Attack_02_black_F"],
+		["O_Heli_Attack_02_black_F", "O_Heli_Attack_02_black_F"]
 	];
 
 	if (missionDifficultyHard) then
 	{
-		(_vehChoices select 0) set [1, "B_Heli_Attack_01_dynamicLoadout_F"];
-		(_vehChoices select 1) set [1, "O_Heli_Attack_02_dynamicLoadout_F"];
-		(_vehChoices select 2) set [1, "O_Heli_Attack_02_dynamicLoadout_F"];
+		(_vehChoices select 0) set [1, "O_Heli_Attack_02_black_F"];
+		(_vehChoices select 1) set [1, "O_Heli_Attack_02_black_F"];
+		(_vehChoices select 2) set [1, "O_Heli_Attack_02_black_F"];
 	};
 
 	_convoyVeh = _vehChoices call BIS_fnc_selectRandom;
 
 	_veh1 = _convoyVeh select 0;
 	_veh2 = _convoyVeh select 1;
-	_veh3 = _convoyVeh select 0;
+	//_veh3 = _convoyVeh select 0;
 
 	_createVehicle =
 	{
@@ -101,7 +95,7 @@ _setupObjects =
 				_soldier moveInTurret [_vehicle, [2]];
 			};
 
-			case (_type isKindOf "Heli_Attack_01_base_F" || _type isKindOf "Heli_Attack_02_base_F"):
+			case (_type isKindOf "O_Heli_Attack_02_dynamicLoadout_F" || _type isKindOf "O_Heli_Attack_02_dynamicLoadout_F"):
 			{
 				// these choppers need 1 gunner
 				_soldier = [_aiGroup, _position] call createRandomSoldierC;
@@ -129,18 +123,18 @@ _setupObjects =
 	_vehicles =
 	[
 		[_veh1, _starts select 0, _startdirs select 0] call _createVehicle,
-		[_veh2, _starts select 1, _startdirs select 1] call _createVehicle,
-		[_veh3, _starts select 2, _startdirs select 2] call _createVehicle
+		[_veh2, _starts select 1, _startdirs select 1] call _createVehicle
+		//[_veh3, _starts select 2, _startdirs select 2] call _createVehicle
 	];
 
 	_leader = effectiveCommander (_vehicles select 0);
 	_aiGroup selectLeader _leader;
 
-	_aiGroup setCombatMode "YELLOW"; // units will defend themselves
-	_aiGroup setBehaviour "SAFE"; // units feel safe until they spot an enemy or get into contact
+	_aiGroup setCombatMode "RED"; // units will defend themselves
+	_aiGroup setBehaviour "COMBAT"; // units feel safe until they spot an enemy or get into contact
 	_aiGroup setFormation "STAG COLUMN";
 
-	_speedMode = if (missionDifficultyHard) then { "NORMAL" } else { "LIMITED" };
+	_speedMode = if (missionDifficultyHard) then { "LIMITED" } else { "LIMITED" };
 
 	_aiGroup setSpeedMode _speedMode;
 
@@ -149,8 +143,8 @@ _setupObjects =
 		_waypoint = _aiGroup addWaypoint [_x, 0];
 		_waypoint setWaypointType "MOVE";
 		_waypoint setWaypointCompletionRadius 50;
-		_waypoint setWaypointCombatMode "YELLOW";
-		_waypoint setWaypointBehaviour "SAFE";
+		_waypoint setWaypointCombatMode "RED";
+		_waypoint setWaypointBehaviour "COMBAT";
 		_waypoint setWaypointFormation "STAG COLUMN";
 		_waypoint setWaypointSpeed _speedMode;
 	} forEach _waypoints;
@@ -177,20 +171,30 @@ _failedExec = nil;
 _successExec =
 {
 	// Mission completed
-
-	_box1 = createVehicle ["Box_NATO_Wps_F", _lastPos, [], 5, "None"];
+	
+	_box1 = createVehicle ["C_IDAP_supplyCrate_F", _lastPos, [], 5, "None"];
 	_box1 setDir random 360;
 	[_box1, "mission_USSpecial"] call fn_refillbox;
-
-	_box2 = createVehicle ["Box_East_Wps_F", _lastPos, [], 5, "None"];
+	_marker1 = "smokeShellRed" createVehicle getPosATL _box1;
+	_marker2 = "smokeShellOrange" createVehicle getPosATL _box1;
+    _marker1 setPosATL (getPosATL _box1);
+	_marker2 setPosATL (getPosATL _box1);
+    _marker1 attachTo [_box1,[0,0,0]];
+	_marker2 attachTo [_box1,[0,0,0.5]];
+	_time = time + 5;
+	
+	_box2 = createVehicle ["C_IDAP_supplyCrate_F", _lastPos, [], 5, "None"];
 	_box2 setDir random 360;
 	[_box2, "mission_USLaunchers"] call fn_refillbox;
-
-	_box3 = createVehicle ["Box_IND_WpsSpecial_F", _lastPos, [], 5, "None"];
-	_box3 setDir random 360;
-	[_box3, "mission_Main_A3snipers"] call fn_refillbox;
-
+	_marker3 = "smokeShellRed" createVehicle getPosATL _box2;
+	_marker4 = "smokeShellOrange" createVehicle getPosATL _box2;
+    _marker3 setPosATL (getPosATL _box2);
+	_marker4 setPosATL (getPosATL _box2);
+    _marker3 attachTo [_box2,[0,0,0]];
+	_marker4 attachTo [_box2,[0,0,0.5]];
+	_time = time + 5;
+	
 	_successHintMessage = "The patrol has been stopped, the ammo crates are yours to take. Find them near the wreck!";
 };
 
-_this call mainMissionProcessor;
+_this call mainMissionProcessor3;
