@@ -1,3 +1,6 @@
+// ******************************************************************************************
+// * This project is licensed under the GNU Affero GPL v3. Copyright © 2014 A3Wasteland.com *
+// ******************************************************************************************
 //	@file Name: missionController.sqf
 //	@file Author: AgentRev
 
@@ -14,7 +17,7 @@ if (_controllerNum > 1) then
 	_controllerSuffix = format [" %1", _controllerNum];
 };
 
-diag_log format ["[BRO'F] WASTELAND SERVER - Started %1 Mission%2 Controller", MISSION_CTRL_TYPE_NAME, _controllerSuffix];
+diag_log format ["WASTELAND SERVER - Started %1 Mission%2 Controller", MISSION_CTRL_TYPE_NAME, _controllerSuffix];
 
 _missionsFolder = MISSION_CTRL_FOLDER;
 [MISSION_CTRL_PVAR_LIST, MISSION_CTRL_FOLDER] call attemptCompileMissions;
@@ -43,12 +46,12 @@ while {true} do
 
 	[MISSION_CTRL_PVAR_LIST, _nextMission, true] call setMissionState;
 
-	diag_log format ["[BRO'F] WASTELAND SERVER - %1 Mission%2 waiting to run: %3", MISSION_CTRL_TYPE_NAME, _controllerSuffix, _nextMission];
+	diag_log format ["WASTELAND SERVER - %1 Mission%2 waiting to run: %3", MISSION_CTRL_TYPE_NAME, _controllerSuffix, _nextMission];
 
 	[
 		format
 		[
-			"<t color='%1' shadow='2' size='1.75'>%2 Exercise%3</t><br/>" +
+			"<t color='%1' shadow='2' size='1.75'>%2 Objective%3</t><br/>" +
 			"<t color='%1'>------------------------------</t><br/>" +
 			"<t color='%4' size='1.0'>Starting in %5 minutes</t>",
 			MISSION_CTRL_COLOR_DEFINE,

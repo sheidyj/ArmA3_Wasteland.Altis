@@ -1,14 +1,17 @@
+// ******************************************************************************************
+// * This project is licensed under the GNU Affero GPL v3. Copyright © 2014 A3Wasteland.com *
+// ******************************************************************************************
 //	@file Name: mission_HostileHeliFormation.sqf
 //	@file Author: JoSchaap, AgentRev
 
 if (!isServer) exitwith {};
 #include "mainMissionDefines.sqf"
 
-private ["_heliChoices", "_convoyVeh", "_veh1", "_veh2", "_veh3", "_createVehicle", "_vehicles", "_leader", "_speedMode", "_waypoint", "_vehicleName", "_vehicleName2", "_numWaypoints", "_box1", "_box2", "_box3", "_marker1", "_marker2", "_marker3", "_marker4", "_msg", "_sender"];
+private ["_heliChoices", "_convoyVeh", "_veh1", "_veh2", "_veh3", "_createVehicle", "_vehicles", "_leader", "_speedMode", "_waypoint", "_vehicleName", "_vehicleName2", "_numWaypoints", "_box1", "_box2", "_box3"];
 
 _setupVars =
 {
-	_missionType = "Air Patrol";
+	_missionType = "Hostile Helicopters";
 	_locationsArray = nil; // locations are generated on the fly from towns
 };
 
@@ -18,23 +21,23 @@ _setupObjects =
 
 	_heliChoices =
 	[
-		["O_Heli_Attack_02_black_F", ["O_Heli_Attack_02_black_F", "pawneeNormal"]],
-		["O_Heli_Attack_02_black_F", ["O_Heli_Attack_02_black_F", "orcaDAGR"]]
-		//["O_Heli_Attack_02_black_F", "O_Heli_Attack_02_black_F"]
+		["B_Heli_Transport_01_F", ["B_Heli_Light_01_dynamicLoadout_F", "pawneeNormal"]],
+		["B_Heli_Transport_01_camo_F", ["O_Heli_Light_02_dynamicLoadout_F", "orcaDAGR"]],
+		["B_Heli_Transport_01_F", "I_Heli_light_03_dynamicLoadout_F"]
 	];
 
 	if (missionDifficultyHard) then
 	{
-		(_heliChoices select 0) set [0, "O_Heli_Attack_02_black_F"];
-		(_heliChoices select 1) set [0, "O_Heli_Attack_02_black_F"];
-		//(_heliChoices select 2) set [0, "O_Heli_Attack_02_black_F"];
+		(_heliChoices select 0) set [0, "B_Heli_Attack_01_dynamicLoadout_F"];
+		(_heliChoices select 1) set [0, "O_Heli_Attack_02_dynamicLoadout_F"];
+		(_heliChoices select 2) set [0, "O_Heli_Attack_02_dynamicLoadout_F"];
 	};
 
 	_convoyVeh = _heliChoices call BIS_fnc_selectRandom;
 
 	_veh1 = _convoyVeh select 0;
 	_veh2 = _convoyVeh select 1;
-	//_veh3 = _convoyVeh select 1;
+	_veh3 = _convoyVeh select 1;
 
 	_createVehicle =
 	{
@@ -108,18 +111,18 @@ _setupObjects =
 	_vehicles =
 	[
 		[_veh1, _missionPos vectorAdd ([[random 50, 0, 0], random 360] call BIS_fnc_rotateVector2D), 0] call _createVehicle,
-		[_veh2, _missionPos vectorAdd ([[random 50, 0, 0], random 360] call BIS_fnc_rotateVector2D), 0] call _createVehicle
-		//[_veh3, _missionPos vectorAdd ([[random 50, 0, 0], random 360] call BIS_fnc_rotateVector2D), 0] call _createVehicle
+		[_veh2, _missionPos vectorAdd ([[random 50, 0, 0], random 360] call BIS_fnc_rotateVector2D), 0] call _createVehicle,
+		[_veh3, _missionPos vectorAdd ([[random 50, 0, 0], random 360] call BIS_fnc_rotateVector2D), 0] call _createVehicle
 	];
 
 	_leader = effectiveCommander (_vehicles select 0);
 	_aiGroup selectLeader _leader;
 
-	_aiGroup setCombatMode "RED"; // units will defend themselves
-	_aiGroup setBehaviour "COMBAT"; // units feel safe until they spot an enemy or get into contact
-	_aiGroup setFormation "LINE";
+	_aiGroup setCombatMode "YELLOW"; // units will defend themselves
+	_aiGroup setBehaviour "SAFE"; // units feel safe until they spot an enemy or get into contact
+	_aiGroup setFormation "VEE";
 
-	_speedMode = if (missionDifficultyHard) then { "LIMITED" } else { "LIMITED" };
+	_speedMode = if (missionDifficultyHard) then { "NORMAL" } else { "LIMITED" };
 
 	_aiGroup setSpeedMode _speedMode;
 
@@ -128,9 +131,9 @@ _setupObjects =
 		_waypoint = _aiGroup addWaypoint [markerPos (_x select 0), 0];
 		_waypoint setWaypointType "MOVE";
 		_waypoint setWaypointCompletionRadius 50;
-		_waypoint setWaypointCombatMode "RED";
-		_waypoint setWaypointBehaviour "COMBAT";
-		_waypoint setWaypointFormation "LINE";
+		_waypoint setWaypointCombatMode "YELLOW";
+		_waypoint setWaypointBehaviour "SAFE";
+		_waypoint setWaypointFormation "VEE";
 		_waypoint setWaypointSpeed _speedMode;
 	} forEach ((call cityList) call BIS_fnc_arrayShuffle);
 
@@ -140,7 +143,7 @@ _setupObjects =
 	_vehicleName = getText (configFile >> "CfgVehicles" >> (_veh1 param [0,""]) >> "displayName");
 	_vehicleName2 = getText (configFile >> "CfgVehicles" >> (_veh2 param [0,""]) >> "displayName");
 
-	_missionHintText = format ["A formation of armed helicopters containing a <t color='%3'>%1</t> and <t color='%3'>%2</t> are patrolling the island. Destroy them and recover their cargo!", _vehicleName, _vehicleName2, mainMissionColor];
+	_missionHintText = format ["A formation of armed helicopters containing a <t color='%3'>%1</t> and two <t color='%3'>%2</t> are patrolling the island. Destroy them and recover their cargo!", _vehicleName, _vehicleName2, mainMissionColor];
 
 	_numWaypoints = count waypoints _aiGroup;
 };
@@ -156,7 +159,7 @@ _failedExec = nil;
 _successExec =
 {
 	// Mission completed
-/*
+
 	_box1 = createVehicle ["Box_NATO_Wps_F", _lastPos, [], 5, "None"];
 	_box1 setDir random 360;
 	[_box1, "mission_USSpecial"] call fn_refillbox;
@@ -165,36 +168,11 @@ _successExec =
 	_box2 setDir random 360;
 	[_box2, "mission_USLaunchers"] call fn_refillbox;
 
-	_box3 = createVehicle ["Box_CSAT_Equip_F", _lastPos, [], 5, "None"];
+	_box3 = createVehicle ["Box_IND_WpsSpecial_F", _lastPos, [], 5, "None"];
 	_box3 setDir random 360;
 	[_box3, "mission_Main_A3snipers"] call fn_refillbox;
-*/
 
-	_box1 = createVehicle ["C_IDAP_supplyCrate_F", _lastPos, [], 5, "None"];
-	_box1 setDir random 360;
-	[_box1, "mission_USSpecial"] call fn_refillbox;
-	_marker1 = "smokeShellRed" createVehicle getPosATL _box1;
-	_marker2 = "smokeShellOrange" createVehicle getPosATL _box1;
-    _marker1 setPosATL (getPosATL _box1);
-	_marker2 setPosATL (getPosATL _box1);
-    _marker1 attachTo [_box1,[0,0,0]];
-	_marker2 attachTo [_box1,[0,0,0.5]];
-    _time = time + 5;
-
-	
-	_box2 = createVehicle ["C_IDAP_supplyCrate_F", _lastPos, [], 5, "None"];
-	_box2 setDir random 360;
-	[_box2, "mission_USLaunchers"] call fn_refillbox;	
-	_marker3 = "smokeShellRed" createVehicle getPosATL _box2;
-	_marker4 = "smokeShellOrange" createVehicle getPosATL _box2;
-    _marker3 setPosATL (getPosATL _box2);
-	_marker4 setPosATL (getPosATL _box2);
-    _marker3 attachTo [_box2,[0,0,0]];
-	_marker4 attachTo [_box2,[0,0,0.5]];
-    _time = time + 5;
-
-	_successHintMessage = "The sky is clear again! Air Patrol Cleaned Up! Ammunition boxes fell near the crash site, the location of the boxes is marked on the map. Take it!";
-
+	_successHintMessage = "The sky is clear again, the enemy patrol was taken out! Ammo crates have fallen near the wreck.";
 };
 
-_this call mainMissionProcessor6;
+_this call mainMissionProcessor;

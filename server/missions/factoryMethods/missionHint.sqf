@@ -1,9 +1,10 @@
 // ******************************************************************************************
-// * This project is licensed under the GNU Affero GPL v3. Copyright © 2020 A3Wasteland.com *
+// * This project is licensed under the GNU Affero GPL v3. Copyright © 2014 A3Wasteland.com *
 // ******************************************************************************************
+//	@file Version: 1.0
 //	@file Name: missionHint.sqf
 //	@file Author: AgentRev
-
+//	@file Created: 09/01/2014 20:30
 
 private ["_title", "_subTitle", "_picture", "_text", "_titleColor"];
 

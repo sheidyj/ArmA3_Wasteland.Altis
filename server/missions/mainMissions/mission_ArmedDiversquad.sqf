@@ -1,3 +1,7 @@
+// ******************************************************************************************
+// * This project is licensed under the GNU Affero GPL v3. Copyright © 2014 A3Wasteland.com *
+// ******************************************************************************************
+//	@file Version: 1.0
 //	@file Name: mission_ArmedDiversquad.sqf
 //	@file Author: JoSchaap, AgentRev
 
@@ -16,7 +20,7 @@ _setupObjects =
 {
 	_missionPos = markerPos _missionLocation;
 
-	_box1 = createVehicle ["Box_CSAT_Equip_F", _missionPos, [], 5, "None"];
+	_box1 = createVehicle ["Box_IND_WpsSpecial_F", _missionPos, [], 5, "None"];
 	_box1 setDir random 360;
 	[_box1, "mission_Main_A3snipers"] call fn_refillbox;
 

@@ -1,9 +1,10 @@
 // ******************************************************************************************
-// * This project is licensed under the GNU Affero GPL v3. Copyright © 2020 A3Wasteland.com *
+// * This project is licensed under the GNU Affero GPL v3. Copyright © 2014 A3Wasteland.com *
 // ******************************************************************************************
+//	@file Version: 1.0
 //	@file Name: mission_VehicleCapture.sqf
 //	@file Author: [404] Deadbeat, [404] Costlyy, JoSchaap, AgentRev
-
+//	@file Created: 08/12/2012 15:19
 
 if (!isServer) exitwith {};
 #include "mainMissionDefines.sqf";
@@ -24,6 +25,8 @@ _setupObjects =
 		_variant = _vehicleClass param [1,"",[""]];
 		_vehicleClass = _vehicleClass select 0;
 	};
+
+	if (!isNil "_customVehicleSetup") then { call _customVehicleSetup };
 
 	/*switch (true) do
 	{
