@@ -537,6 +537,7 @@ headArray = compileFinal str
 	["Combat Helmet (Black)", "H_HelmetB_black", 50, "hat"],
 	["Combat Helmet (Camonet)", "H_HelmetB_camo", 50, "hat"],
 	["Stealth Combat Helmet", "H_HelmetB_TI_tna_F", 75, "hat"],
+	["Special Purpose Helmet", "H_HelmetO_ViperSP_hex_F", 150000, "hat"],
 	["Enhanced Combat Helmet", "H_HelmetSpecB", 75, "hat"],
 	["Enhanced Combat Helmet (Black)", "H_HelmetSpecB_blk", 75, "hat"],
 	["Enhanced Combat Helmet (Snakeskin)", "H_HelmetSpecB_snakeskin", 75, "hat"],
@@ -1156,7 +1157,7 @@ tanksArray = compileFinal str
 	["T-100 Varsuk", "O_MBT_02_cannon_F", 50000, "vehicle"],
 	["MBT-52 Kuma", "I_MBT_03_cannon_F", 60000, "vehicle"],
 	["T-140 Angara", "O_MBT_04_cannon_F", 75000, "vehicle"],
-	["T-140K Angara", "O_MBT_04_command_F", 90000, "vehicle"]
+	["T-140K Angara", "O_MBT_04_command_F", 90000, "vehicle"],
 	["M4 Scorcher", "B_MBT_01_arty_F", 5000000, "vehicle"],
 	["M5 Sandstorm MLRS", "B_MBT_01_mlrs_F", 5000000, "vehicle"]
 ];
