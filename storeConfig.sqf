@@ -1426,7 +1426,7 @@ colorsArray = compileFinal str
 		[
 			["Rusty - Hatchback", [[0, _wreckDir + "civilcar_extwreck_co.paa"]]]
 		]
-	],
+	]
 	/*[ // GOD EMPEROR
 		"B_MBT_01_cannon_F",
 		[
